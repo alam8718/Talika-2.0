@@ -1,15 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import {useGlobalContext} from "../../Context";
 
 import {IoCheckmarkDoneCircleOutline} from "react-icons/io5";
 import {FaCheckCircle} from "react-icons/fa";
 import {AiFillDelete, AiOutlineEdit} from "react-icons/ai";
 function Card({data}) {
-  // destructureing the data
-  const {task, time, id} = data;
-
   // data getting from contextApi
-  const {removeItem, editItem, completeItem} = useGlobalContext();
+  const {todos, removeItem, editItem, completeItem} = useGlobalContext();
+
+  const [afterEdit, setAfterEdit] = useState(data.task);
+  const [isEditAble, setIsEditAble] = useState(false);
+  const handleEditValue = (e) => {
+    setAfterEdit(e.target.value);
+  };
 
   return (
     <>
@@ -18,27 +21,50 @@ function Card({data}) {
           {/* card here */}
           <div className="h-[100px] bg-[#F5BB00] my-3 px-4 py-1 flex flex-col items-center gap-2 rounded-xl">
             <div className="w-[100px text-center w-full">
-              <p>{time}</p>
+              <p>{data.time}</p>
             </div>
-            <div className="w-full h-full justify-between flex  ">
-              <a className="w-full h-[50px] line-clamp-2   ">{task}</a>
+            <div className="w-full  justify-between flex  ">
+              {isEditAble ? (
+                <input
+                  type="text"
+                  className={`bg-transparent w-full  ${
+                    data.complete ? "line-through" : ""
+                  } text-lg ${
+                    isEditAble
+                      ? "ring-2 ring-purple-500 rounded-lg px-2 outline-none"
+                      : ""
+                  }  `}
+                  value={afterEdit}
+                  onChange={handleEditValue}
+                />
+              ) : (
+                <p
+                  className={`px-2 bg-transparent w-full  ${
+                    data.complete ? "line-through" : ""
+                  } text-lg`}>
+                  {data.task}
+                </p>
+              )}
               {/* icons  */}
-              <div className="w-[110px] ">
-                <div className="flex ">
+              <div className="w-[110px]  ">
+                <div className="flex h-full items-center">
                   <div
                     className="px-1 hover:scale-110 duration-300 hover: hover:text-green-600"
-                    onClick={() => completeItem()}>
+                    onClick={() => completeItem(data.id)}>
                     <FaCheckCircle size={25} />
                   </div>
                   <div
                     className="px-1 hover:scale-110 duration-300 hover:text-fuchsia-600"
-                    onClick={() => editItem()}>
+                    onClick={() => {
+                      editItem(data.id, afterEdit);
+                      setIsEditAble(!isEditAble);
+                      // setAfterEdit("")
+                    }}>
                     <AiOutlineEdit size={27} />
                   </div>
                   <div
                     className="px-1 hover:scale-110 duration-300 hover:text-red-600"
-                    onClick={() => removeItem(id)}
-                    >
+                    onClick={() => removeItem(data.id)}>
                     <AiFillDelete size={27} />
                   </div>
                 </div>

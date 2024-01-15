@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
-      sans: ["Avenir Next LT Pro", "sans-serif"],
+      primary: ["Avenir Next LT Pro", "sans-serif"],
     },
   },
   plugins: [],

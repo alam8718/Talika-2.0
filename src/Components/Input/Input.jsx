@@ -4,7 +4,7 @@ import Card from "../Design/Card";
 import {useForm} from "react-hook-form";
 function Input() {
   const {register, reset, handleSubmit} = useForm();
-  const {setStore, store, reverse} = useGlobalContext();
+  const {setTodo, todos, reverse} = useGlobalContext();
 
   return (
     <>
@@ -15,10 +15,10 @@ function Input() {
             const Time = t.toLocaleString();
 
             const combine = [
-              ...store,
-              {id: store.length + 1, ...data, time: Time},
+              ...todos,
+              {id: todos.length + 1, ...data, time: Time, complete: false},
             ];
-            setStore(combine);
+            setTodo(combine);
             reset();
           })}
           className="flex flex-col items-center gap-6  w-[400px] h-[120px] ">
@@ -34,15 +34,15 @@ function Input() {
           />
           <button
             type="submit"
-            className="uppercase bg-purple-400 px-4 py-2 rounded-3xl text-sm ">
+            className="uppercase font-semibold  px-4 py-2 ring-2 ring-purple-400 hover:bg-purple-400 hover:text-[#f7ebdf] hover:ring-0 duration-300 rounded-3xl text-sm ">
             add new task
           </button>
         </form>
       </div>
-      {console.log(store)}
+      {console.log(todos)}
       <div
-        className={`w-full my-5 ${store.length > 4 && "overflow-y-scroll"} `}>
-        {store.length > 0 &&
+        className={`w-full my-5 ${todos.length > 4 && "overflow-y-scroll"} `}>
+        {todos.length > 0 &&
           reverse.map((data) => <Card key={data.id} data={data} />)}
       </div>
     </>

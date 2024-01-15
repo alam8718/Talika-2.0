@@ -4,24 +4,45 @@ export const AppContext = createContext();
 
 export const AppProvider = ({children}) => {
   // const [showInput, setShowInput] = useState({});
-  const [store, setStore] = useState([]);
-  const reverse = [...store].reverse();
+  const [todos, setTodo] = useState([]);
+  // const [complete, setComplete] = useState(false);
+
+  const reverse = [...todos].reverse();
 
   const removeItem = (removeId) => {
-    setStore(store.filter((data) => data.id !== removeId));
+    setTodo(todos.filter((data) => data.id !== removeId));
   };
-  const completeItem = () => {
-    console.log("i am complete item");
+  const completeItem = (Id) => {
+    const updateTodo = todos.map((todo) =>
+      Id === todo.id ? {...todo, complete: !todo.complete} : todo
+    );
+    setTodo(updateTodo);
   };
-  const editItem = () => {
-    console.log("i am edit item");
+  const editItem = (Id, newTodo) => {
+    updateTodo(Id, newTodo);
+  };
+
+  const updateTodo = (Id, newTodo) => {
+    // console.log("my id ", Id);
+    setTodo((prev) =>
+      prev.map((prevtodo) => {
+        return prevtodo.id === Id ? {...prevtodo, task: newTodo} : prevtodo;
+      })
+    );
   };
 
   // useEffect(() => {}, [removeItem]);
 
   return (
     <AppContext.Provider
-      value={{setStore, store, reverse, removeItem, completeItem, editItem}}>
+      value={{
+        setTodo,
+        todos,
+        reverse,
+        removeItem,
+        completeItem,
+        editItem,
+      }}>
       {children}
     </AppContext.Provider>
   );
