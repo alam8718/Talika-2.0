@@ -2,16 +2,21 @@ import React from "react";
 import {useGlobalContext} from "../../Context";
 
 import {IoCheckmarkDoneCircleOutline} from "react-icons/io5";
-import {IoCloseCircleOutline} from "react-icons/io5";
-import {AiOutlineDelete, AiOutlineEdit} from "react-icons/ai";
+import {FaCheckCircle} from "react-icons/fa";
+import {AiFillDelete, AiOutlineEdit} from "react-icons/ai";
 function Card({data}) {
-  const {task, time} = data
+  // destructureing the data
+  const {task, time, id} = data;
+
+  // data getting from contextApi
+  const {removeItem, editItem, completeItem} = useGlobalContext();
+
   return (
     <>
-      <div className="w-full ">
+      <div className="w-full  ">
         <div className=" sm:mx-10">
           {/* card here */}
-          <div className="h-[100px] bg-purple-500 my-3 px-4 flex flex-col items-center gap-2 rounded-xl">
+          <div className="h-[100px] bg-[#F5BB00] my-3 px-4 py-1 flex flex-col items-center gap-2 rounded-xl">
             <div className="w-[100px text-center w-full">
               <p>{time}</p>
             </div>
@@ -20,10 +25,22 @@ function Card({data}) {
               {/* icons  */}
               <div className="w-[110px] ">
                 <div className="flex ">
-                  <IoCheckmarkDoneCircleOutline size={33} />
-                  <AiOutlineEdit size={33} />
-                  <IoCloseCircleOutline size={33} />
-                  <AiOutlineDelete size={33} />
+                  <div
+                    className="px-1 hover:scale-110 duration-300 hover: hover:text-green-600"
+                    onClick={() => completeItem()}>
+                    <FaCheckCircle size={25} />
+                  </div>
+                  <div
+                    className="px-1 hover:scale-110 duration-300 hover:text-fuchsia-600"
+                    onClick={() => editItem()}>
+                    <AiOutlineEdit size={27} />
+                  </div>
+                  <div
+                    className="px-1 hover:scale-110 duration-300 hover:text-red-600"
+                    onClick={() => removeItem(id)}
+                    >
+                    <AiFillDelete size={27} />
+                  </div>
                 </div>
               </div>
             </div>

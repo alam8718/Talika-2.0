@@ -4,8 +4,7 @@ import Card from "../Design/Card";
 import {useForm} from "react-hook-form";
 function Input() {
   const {register, reset, handleSubmit} = useForm();
-
-  const {setStore, store} = useGlobalContext();
+  const {setStore, store, reverse} = useGlobalContext();
 
   return (
     <>
@@ -33,7 +32,6 @@ function Input() {
             name="task"
             className="w-[400px] p-4 rounded-3xl bg-[#f7ebdf] shadow-md shadow-purple-400 outline-none ring-2 ring-purple-500 placeholder:text-purple-500 text-black font-medium text-lg "
           />
-
           <button
             type="submit"
             className="uppercase bg-purple-400 px-4 py-2 rounded-3xl text-sm ">
@@ -43,9 +41,9 @@ function Input() {
       </div>
       {console.log(store)}
       <div
-        className={`w-full my-4 ${store.length > 4 && "overflow-y-scroll"} `}>
+        className={`w-full my-5 ${store.length > 4 && "overflow-y-scroll"} `}>
         {store.length > 0 &&
-          store.map((data) => <Card key={data.id} data={data} />)}
+          reverse.map((data) => <Card key={data.id} data={data} />)}
       </div>
     </>
   );
