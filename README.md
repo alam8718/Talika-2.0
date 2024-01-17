@@ -1,4 +1,4 @@
-# Pti.
+# Talika 2.0
 
 Welcome to [Talika 2.0]!
 
@@ -18,7 +18,7 @@ To run this project locally or integrate it into your environment, follow these 
 1. Clone the repository:
     
     ```bash
-    git clone <https://github.com/alam8718/Talika-2.0>
+    git clone https://github.com/alam8718/Talika-2.0
     
     ```
     
