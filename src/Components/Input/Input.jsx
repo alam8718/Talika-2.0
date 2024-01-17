@@ -41,7 +41,9 @@ function Input() {
       </div>
       {console.log(todos)}
       <div
-        className={`w-full my-5 ${todos.length > 4 && "overflow-y-scroll"} `}>
+        className={`w-full my-7 flex flex-col md:justify-center md:flex-row md:flex-wrap gap-2 ${
+          todos.length > 3 && "overflow-y-scroll"
+        } `}>
         {todos.length > 0 &&
           reverse.map((data) => <Card key={data.id} data={data} />)}
       </div>

@@ -6,8 +6,10 @@ import Input from "../Input/Input";
 function Home() {
   return (
     <>
-      <div className=" relative w-full h-screen container mx-auto px-3">
-        <Background />
+      <div className="relative w-full h-screen">
+        <div className="flex flex-col  w-full h-full container mx-auto px-3 ">
+          <Background />
+        </div>
       </div>
     </>
   );

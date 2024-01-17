@@ -4,8 +4,11 @@ export const AppContext = createContext();
 
 export const AppProvider = ({children}) => {
   // const [showInput, setShowInput] = useState({});
-  const [todos, setTodo] = useState([]);
-  // const [complete, setComplete] = useState(false);
+  const [todos, setTodo] = useState(
+    JSON.parse(localStorage.getItem("talika")) || []
+  );
+  const [openModal, setOpenModal] = useState(false);
+  const [singleCard, setSingleCard] = useState("");
 
   const reverse = [...todos].reverse();
 
@@ -31,7 +34,14 @@ export const AppProvider = ({children}) => {
     );
   };
 
-  // useEffect(() => {}, [removeItem]);
+  const handleModal = () => {
+    setOpenModal(!openModal);
+  };
+
+  //storing the values
+  useEffect(() => {
+    localStorage.setItem("talika", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <AppContext.Provider
@@ -42,6 +52,10 @@ export const AppProvider = ({children}) => {
         removeItem,
         completeItem,
         editItem,
+        handleModal,
+        openModal,
+        singleCard,
+        setSingleCard,
       }}>
       {children}
     </AppContext.Provider>
