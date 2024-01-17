@@ -25,7 +25,10 @@ function Card({data}) {
               <p>{data.time}</p>
             </div>
             <div className="w-full  justify-between flex  ">
-              <h1 className={`${data.complete ? "line-through" : ""}`}>
+              <h1
+                className={` overflow-hidden line-clamp-2 ${
+                  data.complete ? "line-through" : ""
+                }`}>
                 {data.task}
               </h1>
               {/* icons  */}

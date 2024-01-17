@@ -19,7 +19,7 @@ function Modal() {
             <h1 className="text-lg mt-5">{singleCard.time}</h1>
             <div>
               <p>Current task message:</p>
-              <h1 className="bg-white w-[350px] h-[150px] p-2 rounded-xl ">
+              <h1 className="bg-white overflow-hidden break-all w-[350px] h-[150px] p-2 rounded-xl ">
                 {singleCard.task}
               </h1>
             </div>
@@ -39,7 +39,7 @@ function Modal() {
             <button
               onClick={() => {
                 editItem(singleCard.id, afterEdit);
-                setAfterEdit("")
+                setAfterEdit("");
               }}
               className="px-10 bg-cyan-500 py-2 rounded-xl font-semibold hover:bg-cyan-400 hover:ring-2 hover:ring-[#f7ebdf] duration-300">
               Save
