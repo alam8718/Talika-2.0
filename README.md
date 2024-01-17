@@ -7,7 +7,7 @@ This repository contains the source code and documentation for [Talika 2.0]. Bel
 
 ## Live Demo Links
 
-✨✨✨Experience pti. in action!
+✨✨✨Experience Talika 2.0 in action!
 
 ## Visit the live demo here: [Talika 2.0](https://talika2.netlify.app/)
 
