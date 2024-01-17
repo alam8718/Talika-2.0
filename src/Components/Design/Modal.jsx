@@ -19,7 +19,7 @@ function Modal() {
             <h1 className="text-lg mt-5">{singleCard.time}</h1>
             <div>
               <p>Current task message:</p>
-              <h1 className="bg-white overflow-hidden break-all w-[350px] h-[150px] p-2 rounded-xl ">
+              <h1 className="bg-white overflow-y-scroll break-all w-[350px] h-[150px] p-2 rounded-xl ">
                 {singleCard.task}
               </h1>
             </div>
